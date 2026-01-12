@@ -1,5 +1,5 @@
 import path from "node:path";
-import react from "@vitejs/plugin-react-swc";
+import react from '@vitejs/plugin-react'
 import { CodeInspectorPlugin } from "code-inspector-plugin";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
@@ -7,14 +7,9 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [
-		react({
-			jsxImportSource: "@emotion/react",
-			plugins: [["@swc/plugin-emotion", {}]],
-		}),
+		react({ jsxImportSource: "@emotion/react" }),
 		svgr(),
-		CodeInspectorPlugin({
-			bundler: "vite",
-		}),
+		CodeInspectorPlugin({ bundler: "vite" }),
 	],
 	resolve: {
 		alias: {

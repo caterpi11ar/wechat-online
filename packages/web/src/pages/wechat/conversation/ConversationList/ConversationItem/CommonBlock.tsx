@@ -8,13 +8,13 @@ import { useDebounceFn } from "ahooks";
 import { useAtomValue } from "jotai";
 import type {
 	CSSProperties,
-	ComponentType,
 	MouseEventHandler,
 	PropsWithChildren,
 	ReactNode,
 } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 import { useConversationAPI } from "../../context";
+import { canBeDetected } from "@/components/NodeDetected";
 
 interface Props<P = AnyObject> {
 	upperText: IConversationItemBase["upperText"];
@@ -24,7 +24,6 @@ interface Props<P = AnyObject> {
 	blockStyle?: CSSProperties;
 	extraElement?: ReactNode;
 	hideAvatar?: boolean;
-	innerBlockComponent?: ComponentType<P> | string;
 	innerBlockProps?: P;
 	onClick?: MouseEventHandler<HTMLDivElement>;
 }
@@ -38,7 +37,6 @@ const CommonBlock = <P extends AnyObject>({
 	blockStyle,
 	extraElement,
 	hideAvatar,
-	innerBlockComponent: InnerBlockComponent = "div",
 	innerBlockProps,
 	onClick,
 }: PropsWithChildren<Props<P>>) => {
@@ -81,7 +79,7 @@ const CommonBlock = <P extends AnyObject>({
 					)}
 					onClick={debouncedHandleClick}
 				/>
-				<InnerBlockComponent
+				<canBeDetected.div
 					css={css`
             &::before {
               clip-path: polygon(0% 50%, 50% 100%, 0% 100%);
@@ -94,7 +92,7 @@ const CommonBlock = <P extends AnyObject>({
 					{...(innerBlockProps as P)}
 				>
 					{children}
-				</InnerBlockComponent>
+				</canBeDetected.div>
 				{extraElement}
 			</div>
 		</>

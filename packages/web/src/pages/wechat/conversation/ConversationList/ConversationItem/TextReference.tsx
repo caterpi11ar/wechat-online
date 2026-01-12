@@ -1,5 +1,5 @@
 import { h } from "@/components/HashAssets";
-import { type InjectProps, canBeDetected } from "@/components/NodeDetected";
+import { type InjectProps } from "@/components/NodeDetected";
 import TopOperations from "@/components/TopOperations";
 import { MYSELF_ID } from "@/faker/wechat/user";
 import {
@@ -70,7 +70,6 @@ const TextReference = ({ referenceId, conversationItemId }: Props) => {
 			hideAvatar
 			upperText={undefined}
 			senderId={senderId}
-			innerBlockComponent={canBeDetected.div}
 			innerBlockProps={{
 				metaData: [
 					{
