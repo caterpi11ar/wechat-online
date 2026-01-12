@@ -1,5 +1,3 @@
-# wechat-online
-
 <p align="center">
   <h3 align="center">微信在线模拟工具</h3>
   <br />
@@ -17,26 +15,23 @@
   </p>
 </p>
 
-## 目录
-
-- [wechat-online](#wechat-online)
-  - [目录](#目录)
-    - [showcase](#showcase)
-      - [启动项目](#启动项目)
-
 ### showcase
 
 <!-- ![showcase1](assets/case1.png)![showcase2](assets/case2.png) -->
 <div style="display:inline-block">
-  <img src="showcase/case1.png" alt="showcase1" width="200" height="400">
-  <img src="showcase/case6.png" alt="showcase6" width="200" height="400">
-  <img src="showcase/case3.png" alt="showcase3" width="200" height="400">
-  <img src="showcase/case4.png" alt="showcase4" width="200" height="400">
-  <img src="showcase/case5.png" alt="showcase5" width="200" height="400">
+  <img src="showcase/case1.png" alt="showcase1" width="200" height="auto">
+  <img src="showcase/case6.png" alt="showcase6" width="200" height="auto">
+  <img src="showcase/case3.png" alt="showcase3" width="200" height="auto">
+  <img src="showcase/case4.png" alt="showcase4" width="200" height="auto">
+  <img src="showcase/case5.png" alt="showcase5" width="200" height="auto">
 </div>
 
 #### 启动项目
 
 ```bash
+# 安装依赖
+pnpm install
+
+# 启动项目
 pnpm run dev
 ```
