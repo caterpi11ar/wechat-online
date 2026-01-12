@@ -42,7 +42,7 @@ const Service = () => {
 				<BackFilledSVG
 					fill="black"
 					className="h-5 w-5 cursor-pointer"
-					onClick={() => navigate("/wechat/my")}
+					onClick={() => navigate("/my")}
 				/>
 				<div className="flex items-center justify-center font-medium">
 					{t("wechatPage.services.title")}
@@ -65,7 +65,7 @@ const Service = () => {
 					</div>
 					<div
 						className="relative flex cursor-pointer flex-col items-center"
-						onClick={() => navigate("/wechat/wallet")}
+						onClick={() => navigate("/wallet")}
 					>
 						<WalletOutlinedSVG fill="white" className="h-9 w-9" />
 						<div className="mt-1 font-medium text-white">{t("wechatPage.services.wallet")}</div>

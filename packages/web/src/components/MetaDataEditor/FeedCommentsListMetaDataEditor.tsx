@@ -1,4 +1,4 @@
-import { randomFeedId } from "@/faker/wechat/moments";
+import { randomFeedId } from "@/faker/moments";
 import { type IFeedComment, type IStateFeed, feedAtom } from "@/stateV2/moments";
 import { SLATE_EMPTY_VALUE } from "@/wechatComponents/SlateText/utils";
 import { Button, DatePicker, Form } from "antd";

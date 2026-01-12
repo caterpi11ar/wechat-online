@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import ModeSwitch from "../ModeSwitch";
 
 const TopPopover = ({ children }: PopoverProps) => {
-	const inShareMode = !!window.__SHARE_KEY__;
 	const { t } = useTranslation();
 	const [open, setOpen] = useState(false);
 
@@ -17,7 +16,7 @@ const TopPopover = ({ children }: PopoverProps) => {
 	return (
 		<Popover
 			rootClassName="max-lg:hidden"
-			open={!inShareMode && open}
+			open={open}
 			content={
 				<div className="flex space-x-2">
 					<span>{t("base.switchMode")}</span>

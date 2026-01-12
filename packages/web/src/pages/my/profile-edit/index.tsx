@@ -26,7 +26,7 @@ const ProfileEdit = () => {
 				<BackFilledSVG
 					fill="black"
 					className="h-5 w-5 cursor-pointer"
-					onClick={() => navigate("/wechat/my")}
+					onClick={() => navigate("/my")}
 				/>
 				<div className="flex items-center justify-center">{t("wechatPage.my.profile.title")}</div>
 			</div>

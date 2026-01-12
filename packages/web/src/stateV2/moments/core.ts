@@ -1,4 +1,4 @@
-import { INIT_FEEDS } from "@/faker/wechat/moments";
+import { INIT_FEEDS } from "@/faker/moments";
 import { dequal } from "dequal/lite";
 import { type SetStateAction, atom } from "jotai";
 import { focusAtom } from "jotai-optics";

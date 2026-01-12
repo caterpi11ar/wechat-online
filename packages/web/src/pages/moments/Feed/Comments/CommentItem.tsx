@@ -29,7 +29,7 @@ const CommentUserText = ({
 					<span className="mx-[2px]">回复</span>
 					<span
 						className="cursor-pointer text-wechatLink-1"
-						onClick={() => navigate(`/wechat/friend/${replyUserId}`)}
+						onClick={() => navigate(`/friend/${replyUserId}`)}
 					>
 						{replyRemark ?? replyNickname}
 					</span>
@@ -43,7 +43,7 @@ const CommentUserText = ({
 		<div className="relative z-10 float-left inline">
 			<span
 				className="cursor-pointer text-wechatLink-1"
-				onClick={() => navigate(`/wechat/friend/${fromUserId}`)}
+				onClick={() => navigate(`/friend/${fromUserId}`)}
 			>
 				{fromRemark ?? fromNickname}
 			</span>
@@ -110,7 +110,7 @@ const CommentItem = ({
 	}
 
 	const toUser = (id: IStateProfile["id"]) => {
-		navigate(`/wechat/friend/${id}`);
+		navigate(`/friend/${id}`);
 	};
 
 	if (fromDetail) {

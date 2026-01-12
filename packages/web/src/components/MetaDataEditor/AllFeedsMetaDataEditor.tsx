@@ -1,4 +1,4 @@
-import { DEFAULT_FEED } from "@/faker/wechat/moments";
+import { DEFAULT_FEED } from "@/faker/moments";
 import { type IStateFeed, feedListAtom } from "@/stateV2/moments";
 import type { IStateProfile } from "@/stateV2/profile";
 import { Button, DatePicker, Form, Radio, type RadioChangeEvent } from "antd";

@@ -19,7 +19,7 @@ const TopAvatar = () => {
 				...metaDataPart,
 			}}
 		>
-			<div className="flex cursor-pointer" onClick={() => navigate(`/wechat/friend/${id}`)}>
+			<div className="flex cursor-pointer" onClick={() => navigate(`/friend/${id}`)}>
 				<div className="mt-2 mr-3 font-medium text-white text-xl">{remark ?? nickname}</div>
 				<h.img src={avatarInfo} className="h-16 w-16 rounded-md" />
 			</div>

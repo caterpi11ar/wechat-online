@@ -17,27 +17,27 @@ const QuickJumpSelect = () => {
 		"/wechat": [
 			{
 				label: t("quickJump.wechat.index"),
-				value: "/wechat",
+				value: "/",
 			},
 			{
 				label: t("quickJump.wechat.profileEdit"),
-				value: "/wechat/my/profile-edit",
+				value: "/my/profile-edit",
 			},
 			{
 				label: t("quickJump.wechat.services"),
-				value: "/wechat/service",
+				value: "/service",
 			},
 			{
 				label: t("quickJump.wechat.balance"),
-				value: "/wechat/wallet/balance",
+				value: "/wallet/balance",
 			},
 			{
 				label: t("quickJump.wechat.moments"),
-				value: "/wechat/moments",
+				value: "/moments",
 			},
 			{
 				label: t("quickJump.wechat.trans"),
-				value: "/wechat/transaction/qr-transfer",
+				value: "/transaction/qr-transfer",
 			},
 		],
 	};

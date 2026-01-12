@@ -1,4 +1,4 @@
-import { MYSELF_ID, addFakeUser, quickAddFakeUser } from "@/faker/wechat/user";
+import { MYSELF_ID, addFakeUser, quickAddFakeUser } from "@/faker/user";
 import { dialogueListAtom } from "@/stateV2/dialogueList";
 import { type IStateProfile, allProfilesIdsAtom, profileAtom } from "@/stateV2/profile";
 import { PlusCircleOutlined } from "@ant-design/icons";
@@ -57,36 +57,36 @@ const FriendSelect = ({
 			dropdownRender={
 				withQuickAdd
 					? (menu) => (
-							<>
-								{menu}
-								<Divider className="my-2" />
-								<div className="flex justify-between px-1 pb-2">
-									<Input
-										value={quickAddNickname}
-										placeholder="好友昵称"
-										onChange={(ev) => setQuickAddNickname(ev.target.value)}
-										onKeyDown={(ev) => {
-											ev.stopPropagation();
-											if (ev.key === "Enter") {
-												quickAddFriend();
-											}
-										}}
-									/>
-									<Button type="text" icon={<PlusCircleOutlined />} onClick={quickAddFriend}>
-										快速增加好友
-									</Button>
-									<Button
-										type="text"
-										icon={<PlusCircleOutlined />}
-										onClick={() => {
-											quickAddFakeUser();
-										}}
-									>
-										快速增加20个好友
-									</Button>
-								</div>
-							</>
-						)
+						<>
+							{menu}
+							<Divider className="my-2" />
+							<div className="flex justify-between px-1 pb-2">
+								<Input
+									value={quickAddNickname}
+									placeholder="好友昵称"
+									onChange={(ev) => setQuickAddNickname(ev.target.value)}
+									onKeyDown={(ev) => {
+										ev.stopPropagation();
+										if (ev.key === "Enter") {
+											quickAddFriend();
+										}
+									}}
+								/>
+								<Button type="text" icon={<PlusCircleOutlined />} onClick={quickAddFriend}>
+									快速增加好友
+								</Button>
+								<Button
+									type="text"
+									icon={<PlusCircleOutlined />}
+									onClick={() => {
+										quickAddFakeUser();
+									}}
+								>
+									快速增加20个好友
+								</Button>
+							</div>
+						</>
+					)
 					: undefined
 			}
 			{...rest}

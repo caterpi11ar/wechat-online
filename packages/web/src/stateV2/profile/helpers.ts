@@ -1,4 +1,4 @@
-import { INIT_FRIENDS, generateFakeUser } from "@/faker/wechat/user";
+import { INIT_FRIENDS, generateFakeUser } from "@/faker/user";
 import { debounce } from "lodash-es";
 import { pinyin } from "pinyin-pro";
 import type { IStateProfile, TNeedGroupDataItem } from "./typing";

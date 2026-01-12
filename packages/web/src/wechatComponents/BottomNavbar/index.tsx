@@ -80,7 +80,7 @@ const BottomNavbar = () => {
 					operations: commonOperations,
 				}}
 				onClick={() => {
-					navigate("/wechat/contacts");
+					navigate("/contacts");
 				}}
 			>
 				<Badge
@@ -108,7 +108,7 @@ const BottomNavbar = () => {
 					operations: commonOperations,
 				}}
 				onClick={() => {
-					navigate("/wechat/discover");
+					navigate("/discover");
 				}}
 			>
 				<Badge
@@ -136,7 +136,7 @@ const BottomNavbar = () => {
 					operations: commonOperations,
 				}}
 				onClick={() => {
-					navigate("/wechat/my");
+					navigate("/my");
 				}}
 			>
 				<Badge

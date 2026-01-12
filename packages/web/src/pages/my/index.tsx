@@ -30,7 +30,7 @@ const My = () => {
 			<canBeDetected.div
 				className="flex cursor-pointer flex-col pt-12 pr-3 pb-6 pl-9"
 				onClick={() => {
-					navigate("/wechat/my/profile-edit");
+					navigate("/my/profile-edit");
 				}}
 				metaData={{
 					type: EMetaDataType.MyProfile,
@@ -66,7 +66,7 @@ const My = () => {
 					<List.Item
 						withJump
 						icon={<PAYLOGO_OUTLINED_SVG fill="#39CD80" />}
-						onClick={() => navigate("/wechat/service")}
+						onClick={() => navigate("/service")}
 					>
 						{t("wechatPage.my.services")}
 					</List.Item>

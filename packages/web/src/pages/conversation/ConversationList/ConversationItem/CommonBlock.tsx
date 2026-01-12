@@ -49,7 +49,7 @@ const CommonBlock = <P extends AnyObject>({
 		if (count === 2) {
 			handleDoubliClick();
 		} else if (count === 1) {
-			navigate(`/wechat/friend/${senderId}`);
+			navigate(`/friend/${senderId}`);
 		}
 	};
 

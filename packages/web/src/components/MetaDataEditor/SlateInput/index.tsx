@@ -1,5 +1,5 @@
 import StickerOutlinedSVG from "@/assets/sticker-outlined.svg?react";
-import EmojiList from "@/pages/wechat/conversation/ConversationFooter/EmojiPanel/EmojiList";
+import EmojiList from "@/pages/conversation/ConversationFooter/EmojiPanel/EmojiList";
 import { recentUsedEmojiAtom } from "@/stateV2/conversation";
 import type { CustomElementEmoji } from "@/vite-env";
 import Element from "@/wechatComponents/SlateText/Element";
@@ -61,10 +61,10 @@ const WrapSlateInput = ({ value, onChange, inline }: Props) => {
 					onKeyDown={
 						inline
 							? (ev) => {
-									if (ev.key === "Enter") {
-										ev.preventDefault();
-									}
+								if (ev.key === "Enter") {
+									ev.preventDefault();
 								}
+							}
 							: undefined
 					}
 					className="rounded border bg-white py-1 pr-7 pl-1 caret-wechatBrand-3 hover:border-antDaybreakBlue-5 focus:border-antDaybreakBlue-5 focus:shadow-[0_0_0_2px_rgba(5,145,255,0.1)] focus:outline-none"

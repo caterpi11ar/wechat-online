@@ -1,22 +1,22 @@
 import App from "@/App";
-import Contacts from "@/pages/wechat/contacts";
-import Conversation from "@/pages/wechat/conversation";
-import Discover from "@/pages/wechat/discover";
-import Friend from "@/pages/wechat/friend";
-import WechatIndex from "@/pages/wechat/index";
-import MomentsIndex from "@/pages/wechat/moments";
-import MomentDetail from "@/pages/wechat/moments/Detail";
-import MomentsLayout from "@/pages/wechat/moments/Layout";
-import PersonalMoments from "@/pages/wechat/moments/Personal";
-import My from "@/pages/wechat/my";
-import ProfileEdit from "@/pages/wechat/my/profile-edit";
-import Service from "@/pages/wechat/service";
-import DetailAdapter from "@/pages/wechat/transaction";
-import Wallet from "@/pages/wechat/wallet";
-import Balance from "@/pages/wechat/wallet/Balance";
+import Contacts from "@/pages/contacts";
+import Conversation from "@/pages/conversation";
+import Discover from "@/pages/discover";
+import Friend from "@/pages/friend";
+import WechatIndex from "@/pages/index";
+import MomentsIndex from "@/pages/moments";
+import MomentDetail from "@/pages/moments/Detail";
+import MomentsLayout from "@/pages/moments/Layout";
+import PersonalMoments from "@/pages/moments/Personal";
+import My from "@/pages/my";
+import ProfileEdit from "@/pages/my/profile-edit";
+import Service from "@/pages/service";
+import DetailAdapter from "@/pages/transaction";
+import Wallet from "@/pages/wallet";
+import Balance from "@/pages/wallet/Balance";
 import { BUILT_IN_TRANSACTION_TYPES_LABELS } from "@/stateV2/transaction";
 import type { TFunction } from "i18next";
-import { Navigate, type RouteObject, type UIMatch } from "react-router-dom";
+import { type RouteObject, type UIMatch } from "react-router-dom";
 
 export interface ICommonRouteHandle {
 	label?: string | ((params: UIMatch["params"], t: TFunction) => string);
@@ -29,155 +29,143 @@ export const routes: RouteObject[] = [
 		children: [
 			{
 				index: true,
-				element: <Navigate replace to="/wechat" />,
+				element: <WechatIndex />,
+				handle: {
+					label: "routerLabel.wechat.index",
+				},
 			},
 			{
-				path: "wechat",
+				path: "conversation/:id",
+				element: <Conversation />,
 				handle: {
-					label: "app.wechat",
+					label: "routerLabel.wechat.cHistory",
+				},
+			},
+			{
+				path: "my",
+				handle: {
+					label: "routerLabel.wechat.my",
 				},
 				children: [
 					{
 						index: true,
-						element: <WechatIndex />,
-						handle: {
-							label: "routerLabel.wechat.index",
-						},
+						element: <My />,
 					},
 					{
-						path: "conversation/:id",
-						element: <Conversation />,
+						path: "profile-edit",
+						element: <ProfileEdit />,
 						handle: {
-							label: "routerLabel.wechat.cHistory",
+							label: "routerLabel.wechat.profileEdit",
 						},
 					},
+				],
+			},
+			{
+				path: "service",
+				handle: {
+					label: "routerLabel.wechat.services",
+				},
+				element: <Service />,
+			},
+			{
+				path: "wallet",
+				handle: {
+					label: "routerLabel.wechat.wallet",
+				},
+				children: [
 					{
-						path: "my",
-						handle: {
-							label: "routerLabel.wechat.my",
-						},
-						children: [
-							{
-								index: true,
-								element: <My />,
-							},
-							{
-								path: "profile-edit",
-								element: <ProfileEdit />,
-								handle: {
-									label: "routerLabel.wechat.profileEdit",
-								},
-							},
-						],
+						index: true,
+						element: <Wallet />,
 					},
 					{
-						path: "service",
+						path: "balance",
+						element: <Balance />,
 						handle: {
-							label: "routerLabel.wechat.services",
-						},
-						element: <Service />,
-					},
-					{
-						path: "wallet",
-						handle: {
-							label: "routerLabel.wechat.wallet",
-						},
-						children: [
-							{
-								index: true,
-								element: <Wallet />,
-							},
-							{
-								path: "balance",
-								element: <Balance />,
-								handle: {
-									label: "routerLabel.wechat.balance",
-								},
-							},
-						],
-					},
-					{
-						path: "discover",
-						handle: {
-							label: "routerLabel.wechat.discover",
-						},
-						children: [
-							{
-								index: true,
-								element: <Discover />,
-							},
-						],
-					},
-					{
-						path: "contacts",
-						handle: {
-							label: "routerLabel.wechat.contacts",
-						},
-						children: [
-							{
-								index: true,
-								element: <Contacts />,
-							},
-						],
-					},
-					{
-						path: "moments",
-						element: <MomentsLayout />,
-						handle: {
-							label: "routerLabel.wechat.moments",
-						},
-						children: [
-							{
-								index: true,
-								element: <MomentsIndex />,
-							},
-							{
-								path: "user/:id",
-								element: <PersonalMoments />,
-								handle: {
-									label: "routerLabel.wechat.personalMoments",
-								},
-							},
-						],
-					},
-					{
-						path: "moments/:id",
-						element: <MomentDetail />,
-						handle: {
-							label: "routerLabel.wechat.momentDetail",
+							label: "routerLabel.wechat.balance",
 						},
 					},
+				],
+			},
+			{
+				path: "discover",
+				handle: {
+					label: "routerLabel.wechat.discover",
+				},
+				children: [
 					{
-						path: "friend",
-						handle: {
-							label: "routerLabel.wechat.user",
-						},
-						children: [
-							{
-								path: ":id",
-								element: <Friend />,
-							},
-						],
+						index: true,
+						element: <Discover />,
+					},
+				],
+			},
+			{
+				path: "contacts",
+				handle: {
+					label: "routerLabel.wechat.contacts",
+				},
+				children: [
+					{
+						index: true,
+						element: <Contacts />,
+					},
+				],
+			},
+			{
+				path: "moments",
+				element: <MomentsLayout />,
+				handle: {
+					label: "routerLabel.wechat.moments",
+				},
+				children: [
+					{
+						index: true,
+						element: <MomentsIndex />,
 					},
 					{
-						path: "transaction",
+						path: "user/:id",
+						element: <PersonalMoments />,
 						handle: {
-							label: "routerLabel.wechat.transaction",
+							label: "routerLabel.wechat.personalMoments",
 						},
-						children: [
-							{
-								path: ":type",
-								element: <DetailAdapter />,
-								handle: {
-									label: (p: UIMatch["params"], t: TFunction) =>
-										t(
-											BUILT_IN_TRANSACTION_TYPES_LABELS[
-												p.type as keyof typeof BUILT_IN_TRANSACTION_TYPES_LABELS
-											],
-										),
-								},
-							},
-						],
+					},
+				],
+			},
+			{
+				path: "moments/:id",
+				element: <MomentDetail />,
+				handle: {
+					label: "routerLabel.wechat.momentDetail",
+				},
+			},
+			{
+				path: "friend",
+				handle: {
+					label: "routerLabel.wechat.user",
+				},
+				children: [
+					{
+						path: ":id",
+						element: <Friend />,
+					},
+				],
+			},
+			{
+				path: "transaction",
+				handle: {
+					label: "routerLabel.wechat.transaction",
+				},
+				children: [
+					{
+						path: ":type",
+						element: <DetailAdapter />,
+						handle: {
+							label: (p: UIMatch["params"], t: TFunction) =>
+								t(
+									BUILT_IN_TRANSACTION_TYPES_LABELS[
+									p.type as keyof typeof BUILT_IN_TRANSACTION_TYPES_LABELS
+									],
+								),
+						},
 					},
 				],
 			},

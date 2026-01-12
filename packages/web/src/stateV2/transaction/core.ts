@@ -4,7 +4,7 @@ import {
 	DEFAULT_QR_TRANSFER,
 	DEFAULT_RED_PACKET,
 	DEFAULT_TRANSFER,
-} from "@/faker/wechat/transaction";
+} from "@/faker/transaction";
 import type { SetStateAction } from "jotai";
 import atomWithStorage from "../atomWithStorage";
 import { mainStore } from "../store";

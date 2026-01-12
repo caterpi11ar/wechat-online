@@ -25,7 +25,7 @@ const Discover = () => {
 			</div>
 			<div className="flex flex-1 flex-col bg-[rgba(237,237,237,1)]">
 				<List>
-					<List.Item withJump icon={<MomentSVG />} onClick={() => navigate("/wechat/moments")}>
+					<List.Item withJump icon={<MomentSVG />} onClick={() => navigate("/moments")}>
 						{t("wechatPage.discover.moments")}
 					</List.Item>
 				</List>

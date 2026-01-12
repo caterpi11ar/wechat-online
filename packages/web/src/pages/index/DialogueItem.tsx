@@ -81,7 +81,7 @@ const DialogueItem = ({ itemId, className }: Props) => {
 				},
 			]}
 			onClick={() => {
-				navigate(`/wechat/conversation/${friendId}`);
+				navigate(`/conversation/${friendId}`);
 			}}
 			nodeTreeSort
 		>

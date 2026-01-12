@@ -139,7 +139,7 @@ const PersonalContent = ({ id }: Props) => {
 	return (
 		<canBeDetected.div
 			className={twJoin("flex cursor-pointer", content.type !== "text" && "h-18")}
-			onClick={() => navigate(`/wechat/moments/${id}`)}
+			onClick={() => navigate(`/moments/${id}`)}
 			metaData={[
 				{
 					type: EMetaDataType.MomentsFeed,
@@ -159,15 +159,15 @@ const PersonalContent = ({ id }: Props) => {
 				},
 				userId === MYSELF_ID
 					? {
-							type: EMetaDataType.MyProfile,
-							label: "用户信息",
-						}
+						type: EMetaDataType.MyProfile,
+						label: "用户信息",
+					}
 					: {
-							type: EMetaDataType.FirendProfile,
-							index: userId,
-							treeItemDisplayName: (data) => `${data.nickname}的朋友圈`,
-							label: "用户信息",
-						},
+						type: EMetaDataType.FirendProfile,
+						index: userId,
+						treeItemDisplayName: (data) => `${data.nickname}的朋友圈`,
+						label: "用户信息",
+					},
 			]}
 		>
 			{renderFeedImages()}

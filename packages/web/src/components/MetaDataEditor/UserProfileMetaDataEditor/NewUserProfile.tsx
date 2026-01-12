@@ -1,4 +1,4 @@
-import { randomUserId } from "@/faker/wechat/user";
+import { randomUserId } from "@/faker/user";
 import {
 	type IStateProfile,
 	MOMENTS_PRIVACY_TEXT_MAP,

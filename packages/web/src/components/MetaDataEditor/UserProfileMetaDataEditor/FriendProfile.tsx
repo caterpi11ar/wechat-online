@@ -1,4 +1,4 @@
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import { type IStateProfile, MOMENTS_PRIVACY_TEXT_MAP, profileAtom } from "@/stateV2/profile";
 import { MinusCircleOutlined, PhoneOutlined, TagOutlined } from "@ant-design/icons";
 import { Button, Form, Input, InputNumber, Radio, Select, Switch } from "antd";

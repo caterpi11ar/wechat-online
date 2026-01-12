@@ -207,7 +207,7 @@ const Friend = () => {
 							)}
 							onClick={() => {
 								if (userId) {
-									navigate(`/wechat/conversation/${userId}`);
+									navigate(`/conversation/${userId}`);
 									setDialogueList((prev) => {
 										if (prev.some((v) => v.friendId === userId)) return prev;
 										return [

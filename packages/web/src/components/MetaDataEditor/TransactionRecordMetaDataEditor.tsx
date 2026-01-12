@@ -2,7 +2,7 @@ import {
 	randomCreditCardName,
 	randomPaymentMethod,
 	randomTransactionCode,
-} from "@/faker/wechat/transaction";
+} from "@/faker/transaction";
 import {
 	BUILT_IN_TRANSACTION_TYPES,
 	BUILT_IN_TRANSACTION_TYPES_LABELS,
@@ -51,7 +51,7 @@ const TransactionRecordMetaDataEditor = ({
 				<Radio.Group
 					onChange={(ev) => {
 						const value = ev.target.value;
-						navigate(`/wechat/transaction/${value}`, {
+						navigate(`/transaction/${value}`, {
 							replace: true,
 						});
 					}}

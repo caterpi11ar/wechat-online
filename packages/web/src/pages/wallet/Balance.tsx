@@ -19,7 +19,7 @@ const Balance = () => {
 				<BackFilledSVG
 					fill="black"
 					className="h-5 w-5 cursor-pointer"
-					onClick={() => navigate("/wechat/wallet")}
+					onClick={() => navigate("/wallet")}
 				/>
 				<div>{t("wechatPage.wallet.balancePage.transactions")}</div>
 			</div>

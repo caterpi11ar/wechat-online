@@ -1,4 +1,4 @@
-import { INIT_FRIENDS, INIT_MY_PROFILE, MYSELF_ID } from "@/faker/wechat/user";
+import { INIT_FRIENDS, INIT_MY_PROFILE, MYSELF_ID } from "@/faker/user";
 import { dequal } from "dequal/lite";
 import { type SetStateAction, atom } from "jotai";
 import { focusAtom } from "jotai-optics";

@@ -24,7 +24,7 @@ const Wallet = () => {
 				<BackFilledSVG
 					fill="black"
 					className="h-5 w-5 cursor-pointer"
-					onClick={() => navigate("/wechat/service")}
+					onClick={() => navigate("/service")}
 				/>
 				<div className="flex items-center justify-center font-medium">
 					{t("wechatPage.wallet.title")}
@@ -36,7 +36,7 @@ const Wallet = () => {
 					<List.CanBeDetectedItem
 						withJump
 						icon={<CoinOutlinedSVG fill="#FFC300" />}
-						onClick={() => navigate("/wechat/wallet/balance")}
+						onClick={() => navigate("/wallet/balance")}
 						metaData={{
 							type: EMetaDataType.Wallet,
 							treeItemDisplayName: (data) => `零钱余额：¥${data.balance}`,

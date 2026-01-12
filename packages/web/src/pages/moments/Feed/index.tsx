@@ -63,7 +63,7 @@ const Feed = ({
 	};
 
 	const toFriendPage = useCallback(() => {
-		navigate(`/wechat/friend/${userId}`);
+		navigate(`/friend/${userId}`);
 	}, [userId]);
 
 	let operations = [
@@ -92,7 +92,7 @@ const Feed = ({
 		},
 		{
 			onClick: () => {
-				originalNavigate(`/wechat/moments/user/${userId}`);
+				originalNavigate(`/moments/user/${userId}`);
 			},
 			element: (
 				<Tooltip title="进入到该用户的单独朋友圈页面">
@@ -103,7 +103,7 @@ const Feed = ({
 		{
 			key: "detail",
 			onClick: () => {
-				originalNavigate(`/wechat/moments/${id}`);
+				originalNavigate(`/moments/${id}`);
 			},
 			element: (
 				<Tooltip title="进入到单条朋友圈的详情页">
@@ -129,16 +129,16 @@ const Feed = ({
 				},
 				userId === MYSELF_ID
 					? {
-							type: EMetaDataType.MyProfile,
-							treeItemDisplayName: (data) => `${data.nickname}的朋友圈`,
-							label: "用户信息",
-						}
+						type: EMetaDataType.MyProfile,
+						treeItemDisplayName: (data) => `${data.nickname}的朋友圈`,
+						label: "用户信息",
+					}
 					: {
-							type: EMetaDataType.FirendProfile,
-							index: userId,
-							treeItemDisplayName: (data) => `${data.nickname}的朋友圈`,
-							label: "用户信息",
-						},
+						type: EMetaDataType.FirendProfile,
+						index: userId,
+						treeItemDisplayName: (data) => `${data.nickname}的朋友圈`,
+						label: "用户信息",
+					},
 			]}
 			nodeTreeSort
 		>

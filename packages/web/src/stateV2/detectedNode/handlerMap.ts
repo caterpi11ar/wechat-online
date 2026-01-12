@@ -1,4 +1,4 @@
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import { type EBottomNavBars, bottomNavbarsAtom } from "@/stateV2/bottomNavbars";
 import { conversationListAtom, inputterConfigAtom } from "@/stateV2/conversation";
 import { dialogueListAtom } from "@/stateV2/dialogueList";

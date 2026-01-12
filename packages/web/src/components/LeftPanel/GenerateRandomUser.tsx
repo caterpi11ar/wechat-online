@@ -1,4 +1,4 @@
-import { quickAddFakeUser, removeFakeUsers } from "@/faker/wechat/user";
+import { quickAddFakeUser, removeFakeUsers } from "@/faker/user";
 import { getAllProfilesTotalCountValueSnapshot } from "@/stateV2/profile";
 import { DeleteOutlined } from "@ant-design/icons";
 import { App, Button } from "antd";

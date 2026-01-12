@@ -43,23 +43,23 @@ const LikeItem = ({ userId, displayType }: LikeItemProps) => {
 			metaData={
 				userId === MYSELF_ID
 					? {
-							type: EMetaDataType.MyProfile,
-							treeItemDisplayName: (data) => `点赞（${data.nickname}）`,
-							operations,
-						}
+						type: EMetaDataType.MyProfile,
+						treeItemDisplayName: (data) => `点赞（${data.nickname}）`,
+						operations,
+					}
 					: {
-							type: EMetaDataType.FirendProfile,
-							index: userId,
-							treeItemDisplayName: (data) => `点赞（${data.nickname}）`,
-							operations,
-						}
+						type: EMetaDataType.FirendProfile,
+						index: userId,
+						treeItemDisplayName: (data) => `点赞（${data.nickname}）`,
+						operations,
+					}
 			}
 			className={twJoin(
 				"cursor-pointer",
 				showName &&
-					`text-sm text-wechatLink-1 after:mr-2 after:ml-[2px] after:text-black after:content-[','] last:after:hidden`,
+				`text-sm text-wechatLink-1 after:mr-2 after:ml-[2px] after:text-black after:content-[','] last:after:hidden`,
 			)}
-			onClick={() => navigate(`/wechat/friend/${userId}`)}
+			onClick={() => navigate(`/friend/${userId}`)}
 		>
 			{showName && usedName}
 			{showAvatar && (
