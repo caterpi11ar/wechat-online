@@ -1,7 +1,7 @@
 import AlbumFilledSVG from "@/assets/album-filled.svg?react";
 import LikeFilledSVG from "@/assets/like-filled.svg?react";
 import LikeOutlinedSVG from "@/assets/like-outlined.svg?react";
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import { activatedNodeAtom } from "@/stateV2/detectedNode";
 import { getNodesAtomsValueSnapshot } from "@/stateV2/detectedNode/nodeAtom";
 import { getModeValueSnapshot, modeAtom } from "@/stateV2/mode";

@@ -1,4 +1,4 @@
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import { EConversationType, type TConversationItem } from "@/stateV2/conversation";
 import { memo } from "react";
 import { useParams } from "react-router-dom";

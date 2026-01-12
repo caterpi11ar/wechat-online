@@ -14,7 +14,7 @@ const QuickJumpSelect = () => {
 	const { t } = useTranslation();
 
 	const SELECT_OPTIONS = {
-		"/wechat": [
+		"/": [
 			{
 				label: t("quickJump.wechat.index"),
 				value: "/",
@@ -46,7 +46,7 @@ const QuickJumpSelect = () => {
 
 	useEffect(() => {
 		const match = options.find(
-			(v) => v.value === (location.pathname === "/" ? "/wechat" : location.pathname),
+			(v) => v.value === (location.pathname === "/" ? "/" : location.pathname),
 		);
 		if (match) {
 			setValue(match.value);

@@ -3,7 +3,7 @@ import { h } from "@/components/HashAssets";
 import { canBeDetected } from "@/components/NodeDetected";
 import TopOperations from "@/components/TopOperations";
 import useModeNavigate from "@/components/useModeNavigate";
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import { EMetaDataType } from "@/stateV2/detectedNode";
 import { type IStateFeed, feedAtom, feedListAtom } from "@/stateV2/moments";
 import SlateText from "@/wechatComponents/SlateText";

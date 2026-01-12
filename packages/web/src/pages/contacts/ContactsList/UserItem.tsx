@@ -1,7 +1,7 @@
 import { h } from "@/components/HashAssets";
 import TopOperations from "@/components/TopOperations";
 import useModeNavigate from "@/components/useModeNavigate";
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import { EMetaDataType } from "@/stateV2/detectedNode";
 import { dialogueListAtom } from "@/stateV2/dialogueList";
 import { feedListAtom } from "@/stateV2/moments";
@@ -47,24 +47,24 @@ const UserItem = ({
 				id === MYSELF_ID
 					? { type: EMetaDataType.MyProfile, treeItemDisplayName: "我自己" }
 					: {
-							type: EMetaDataType.FirendProfile,
-							index: id,
-							treeItemDisplayName: () => `好友（${name}）`,
-							operations: [
-								{
-									element: <TopOperations.OperaionDeleteBase />,
-									onClick: handleOperationDelete,
-								},
-								{
-									element: <TopOperations.OperationNewBase />,
-									onClick: TopOperations.OperationSelectParent.selectParentNode,
-								},
-							],
-						}
+						type: EMetaDataType.FirendProfile,
+						index: id,
+						treeItemDisplayName: () => `好友（${name}）`,
+						operations: [
+							{
+								element: <TopOperations.OperaionDeleteBase />,
+								onClick: handleOperationDelete,
+							},
+							{
+								element: <TopOperations.OperationNewBase />,
+								onClick: TopOperations.OperationSelectParent.selectParentNode,
+							},
+						],
+					}
 			}
 			textPrevClassName="ml-0"
 			key={_key}
-			onClick={() => navigate(`/wechat/friend/${id}`)}
+			onClick={() => navigate(`/friend/${id}`)}
 			className={twJoin("ml-4", _isLastInAnchorGroup && "border-black/5 border-b")}
 			rightClassName={twJoin(withDescription && "py-0 pb-1", _isLastInAnchorGroup && "border-none")}
 		>

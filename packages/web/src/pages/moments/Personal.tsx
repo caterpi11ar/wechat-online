@@ -1,5 +1,5 @@
 import { canBeDetected } from "@/components/NodeDetected";
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import { EMetaDataType } from "@/stateV2/detectedNode";
 import { type IStateFeed, userFeedListAtom } from "@/stateV2/moments";
 import dayjs from "dayjs";
@@ -137,14 +137,14 @@ const PersonalMoments = () => {
 					metaData={
 						id === MYSELF_ID
 							? {
-									type: EMetaDataType.MyProfile,
-									treeItemDisplayName: "允许朋友查看朋友圈的范围",
-								}
+								type: EMetaDataType.MyProfile,
+								treeItemDisplayName: "允许朋友查看朋友圈的范围",
+							}
 							: {
-									type: EMetaDataType.FirendProfile,
-									index: id,
-									treeItemDisplayName: "允许朋友查看朋友圈的范围",
-								}
+								type: EMetaDataType.FirendProfile,
+								index: id,
+								treeItemDisplayName: "允许朋友查看朋友圈的范围",
+							}
 					}
 				>
 					<div className="h-[1px] w-8 bg-black/10" />

@@ -1,7 +1,7 @@
 import { h } from "@/components/HashAssets";
 import { type InjectProps } from "@/components/NodeDetected";
 import TopOperations from "@/components/TopOperations";
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import {
 	EConversationType,
 	type IConversationTypeText,

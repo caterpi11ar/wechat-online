@@ -1,8 +1,8 @@
 import { canBeDetected } from "@/components/NodeDetected";
 import TopOperations from "@/components/TopOperations";
 import useModeNavigate from "@/components/useModeNavigate";
-import { generateInitFeedComment } from "@/faker/wechat/moments";
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { generateInitFeedComment } from "@/faker/moments";
+import { MYSELF_ID } from "@/faker/user";
 import { EMetaDataType } from "@/stateV2/detectedNode";
 import { type IStateFeed, feedAtom, feedListAtom } from "@/stateV2/moments";
 import { profileAtom } from "@/stateV2/profile";

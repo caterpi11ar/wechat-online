@@ -1,4 +1,4 @@
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import {
 	EConversationType,
 	type IConversationTypeRedPacket,
@@ -130,9 +130,8 @@ export const ConversationAPIProvider = ({ children }: PropsWithChildren) => {
 				if (friendId === MYSELF_ID) {
 					finalTickleText = `我拍了拍自己${myProfile.tickleText ?? ""}`;
 				} else {
-					finalTickleText = `我拍了拍 "${friendProfile.nickname}" ${
-						friendProfile.tickleText ?? ""
-					}`;
+					finalTickleText = `我拍了拍 "${friendProfile.nickname}" ${friendProfile.tickleText ?? ""
+						}`;
 				}
 				setConversationListValue(conversationId, (prev) => {
 					return [

@@ -2,7 +2,7 @@ import BackFilledSVG from "@/assets/back-filled.svg?react";
 import MoreFilledSVG from "@/assets/more-filled.svg?react";
 import StickerOutlinedSVG from "@/assets/sticker-outlined.svg?react";
 import useModeNavigate from "@/components/useModeNavigate";
-import { generateInitFeedComment } from "@/faker/wechat/moments";
+import { generateInitFeedComment } from "@/faker/moments";
 import { feedAtom } from "@/stateV2/moments";
 import { useAtom } from "jotai";
 import { useParams } from "react-router-dom";

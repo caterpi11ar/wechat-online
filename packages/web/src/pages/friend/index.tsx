@@ -8,7 +8,7 @@ import WechatSVG from "@/assets/wechat.svg?react";
 import { h } from "@/components/HashAssets";
 import { canBeDetected } from "@/components/NodeDetected";
 import useModeNavigate from "@/components/useModeNavigate";
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import { EMetaDataType, type StaticMetaData } from "@/stateV2/detectedNode";
 import { dialogueListAtom } from "@/stateV2/dialogueList";
 import { type IStateProfile, PRIVACY_TEXT_MAP, profileAtom } from "@/stateV2/profile";
@@ -176,7 +176,7 @@ const Friend = () => {
 						{!hideThumbnail && (
 							<div
 								className="ml-5 flex items-center border-black/5 border-b py-3"
-								onClick={() => navigate(`/wechat/moments/user/${userId}`)}
+								onClick={() => navigate(`/moments/user/${userId}`)}
 							>
 								<div className="w-20">{t("wechatPage.friend.moments")}</div>
 								<div className="flex flex-1 items-center pr-3">

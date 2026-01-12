@@ -52,7 +52,7 @@ const BottomNavbar = () => {
 					operations: commonOperations,
 				}}
 				onClick={() => {
-					navigate("/wechat");
+					navigate("/");
 				}}
 			>
 				<Badge

@@ -21,11 +21,11 @@ const ConversationHeader = () => {
 					fill="black"
 					className="h-5 w-5 cursor-pointer"
 					onClick={() => {
-						navigate("/wechat");
+						navigate("/");
 					}}
 				/>
 				{
-					unreadCount.count > 0 && (			<canBeDetected.div
+					unreadCount.count > 0 && (<canBeDetected.div
 						className="ml-1 rounded-2xl bg-[rgba(0,0,0,0.15)] px-2 py-[2px] text-xs"
 						metaData={{
 							type: EMetaDataType.UnreadCount,

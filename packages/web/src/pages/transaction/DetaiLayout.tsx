@@ -21,7 +21,7 @@ const DetaiLayout = ({ topElement, columnElement, metaData }: Props) => {
 				<CloseOutlinedSVG
 					fill="black"
 					className="cursor-pointer"
-					onClick={() => navigate("/wechat")}
+					onClick={() => navigate("/")}
 				/>
 				<div>全部账单</div>
 			</div>

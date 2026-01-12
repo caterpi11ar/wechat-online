@@ -1,5 +1,5 @@
 import type { InjectProps } from "@/components/NodeDetected";
-import { MYSELF_ID } from "@/faker/wechat/user";
+import { MYSELF_ID } from "@/faker/user";
 import { EMetaDataType } from "@/stateV2/detectedNode";
 import { profileAtom } from "@/stateV2/profile";
 import { useAtomValue } from "jotai";
