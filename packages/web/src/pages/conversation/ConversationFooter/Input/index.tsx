@@ -65,7 +65,6 @@ const Input = ({ showEmojiPanel, setShowEmojiPanel }: Props) => {
 							sendTextMessage();
 						}
 					}}
-					// @ts-ignore
 					enterKeyHint="send"
 					inputMode={isMobileOnly ? mobileInputMode : "text"}
 				/>

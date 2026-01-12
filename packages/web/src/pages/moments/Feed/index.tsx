@@ -39,8 +39,8 @@ const Feed = ({
 
 	const setFeedList = useSetAtom(feedListAtom);
 	const setFeed = useSetAtom(feedAtom(id));
-	const originalNavigate = useNavigate();
-	const navigate = useModeNavigate({ silence: true });
+	const navigate = useNavigate();
+	const originalNavigate = useModeNavigate({ silence: true });
 
 	const likeAndCommentsContent = useMemo(() => {
 		return (
@@ -63,7 +63,7 @@ const Feed = ({
 	};
 
 	const toFriendPage = useCallback(() => {
-		navigate(`/friend/${userId}`);
+		originalNavigate(`/friend/${userId}`);
 	}, [userId]);
 
 	let operations = [
@@ -92,7 +92,7 @@ const Feed = ({
 		},
 		{
 			onClick: () => {
-				originalNavigate(`/moments/user/${userId}`);
+				navigate(`/moments/user/${userId}`);
 			},
 			element: (
 				<Tooltip title="进入到该用户的单独朋友圈页面">
@@ -103,7 +103,7 @@ const Feed = ({
 		{
 			key: "detail",
 			onClick: () => {
-				originalNavigate(`/moments/${id}`);
+				navigate(`/moments/${id}`);
 			},
 			element: (
 				<Tooltip title="进入到单条朋友圈的详情页">
