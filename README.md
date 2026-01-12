@@ -1,13 +1,5 @@
 # wechat-online
 
-<!-- PROJECT SHIELDS -->
-
-[![Stargazers][stars-shield]][stars-url]
-[![Fork][forks-shield]][fork-url]
-[![GPL License][license-shield]][license-url]
-
-<br />
-
 <p align="center">
   <h3 align="center">微信在线模拟工具</h3>
   <br />
@@ -37,7 +29,6 @@
 <!-- ![showcase1](assets/case1.png)![showcase2](assets/case2.png) -->
 <div style="display:inline-block">
   <img src="showcase/case1.png" alt="showcase1" width="200" height="400">
-  <img src="showcase/case2.png" alt="showcase2" width="200" height="400">
   <img src="showcase/case6.png" alt="showcase6" width="200" height="400">
   <img src="showcase/case3.png" alt="showcase3" width="200" height="400">
   <img src="showcase/case4.png" alt="showcase4" width="200" height="400">
