@@ -27,7 +27,7 @@ export const INIT_FRIENDS: TStateAllProfiles = [
 		id: "1",
 		nickname: "唐吉诃德",
 		avatarInfo: MEI_AVATAR,
-		wechat: "PimPom-cc",
+		wechat: "*",
 		gender: "female",
 		privacy: "all",
 		thumbnailInfo: [],
