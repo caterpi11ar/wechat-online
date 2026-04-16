@@ -82,7 +82,8 @@
 			"momentDetail": "Details of a Moment",
 			"user": "User",
 			"transaction": "Transaction Details",
-			"contacts": "Contacts"
+			"contacts": "Contacts",
+			"groupCHistory": "Group Chat"
 		}
 	},
 	"wechatPage": {

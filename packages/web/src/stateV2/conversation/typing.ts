@@ -19,6 +19,8 @@ export interface IConversationItemBase {
 	upperText?: string;
 	sendTimestamp?: number;
 	role: TConversationRole;
+	/** 群聊中标识实际发送者的 profile ID */
+	senderId?: string;
 }
 
 export interface IConversationTypeText extends IConversationItemBase {

@@ -22,6 +22,7 @@ import FeedCommentItemMetaDataEditor from "./FeedCommentItemMetaDataEditor";
 import FeedCommentsListMetaDataEditor from "./FeedCommentsListMetaDataEditor";
 import FeedLikeMetaDataEditor from "./FeedLikeMetaDataEditor";
 import FeedMetaDataEditor from "./FeedMetaDataEditor";
+import GroupProfileMetaDataEditor from "./GroupProfileMetaDataEditor";
 import MultipleDeviceLoginEditor from "./MultipleDeviceLoginEditor";
 import NavigationBarMetaDataEditor from "./NavigationBarMetaDataEditor";
 import StatusBarMetaDataEditor from "./StatusBarMetaDataEditor";
@@ -57,6 +58,7 @@ const TYPE_MAP_COMPONENT = {
 	[EMetaDataType.ContactsContainer]: NewUserMetaDataEditor,
 	[EMetaDataType.FriendsTotalCount]: FriendsTotlaMetaDataEditor,
 	[EMetaDataType.MultipleDeviceLogin]: MultipleDeviceLoginEditor,
+	[EMetaDataType.GroupProfile]: GroupProfileMetaDataEditor,
 };
 
 const MetaDataEditor = () => {

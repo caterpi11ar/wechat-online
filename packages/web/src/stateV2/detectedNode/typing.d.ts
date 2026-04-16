@@ -1,6 +1,7 @@
 import type { EBottomNavBars, IBottomNavbarsItemConfig } from "@/stateV2/bottomNavbars";
 import type { TConversationItem, TStateConversationInputterConfig } from "@/stateV2/conversation";
 import type { IDialogueItem } from "@/stateV2/dialogueList";
+import type { IStateGroup } from "@/stateV2/group";
 import type { IFeedComment, IStateFeed } from "@/stateV2/moments";
 import type { TStateMultipleDeviceLogin } from "@/stateV2/multipleDeviceLogin";
 import type { IStateProfile, TStateFriendsTotalCountDisplayConfig } from "@/stateV2/profile";
@@ -165,6 +166,13 @@ declare namespace OverallMetaData {
 		treeItemDisplayName: string | ((data: TStateMultipleDeviceLogin) => string);
 	}
 
+	interface IMetaDataGroupProfile extends Base {
+		type: EMetaDataType.GroupProfile;
+		index: IStateGroup["id"];
+		data: IStateGroup;
+		treeItemDisplayName: string | ((data: IStateGroup) => string);
+	}
+
 	interface IMetaDataSimple extends Base {
 		treeItemDisplayName: string;
 	}
@@ -191,6 +199,7 @@ declare namespace OverallMetaData {
 		| IMetaDataContactsContainer
 		| IMetaDataFriendsTotalCount
 		| IMetaDataMultipleDeviceLogin
+		| IMetaDataGroupProfile
 		| IMetaDataSimple;
 
 	type OverallIndex = GetTypeInUnion<Overall, "index">;

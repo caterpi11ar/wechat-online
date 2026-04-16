@@ -1,7 +1,8 @@
 import { type IDialogueItem, dialogueItemAtom } from "@/stateV2/dialogueList";
-import { Button, Form, Input, InputNumber, Radio, Switch } from "antd";
+import { type IStateGroup, allGroupsAtom } from "@/stateV2/group";
+import { Button, Form, Input, InputNumber, Radio, Select, Switch } from "antd";
 import dayjs from "dayjs";
-import { useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { useMemo } from "react";
 import FriendSelect from "./FriendSelect";
 import { specialValueFormatter } from "./utils";
@@ -10,6 +11,8 @@ const DialogueItemMetaDataEditor = ({ data }: EditorProps<IDialogueItem, IDialog
 	type FormValuesType = IDialogueItem;
 	const [form] = Form.useForm<FormValuesType>();
 	const setDialogue = useSetAtom(dialogueItemAtom(data.id));
+	const allGroups = useAtomValue(allGroupsAtom);
+	const isGroup = !!data.groupId;
 
 	const initialValues = useMemo(() => {
 		const { isPinned, isMuted, unreadDisplayType, unreadMarkNumber } = data;
@@ -30,6 +33,11 @@ const DialogueItemMetaDataEditor = ({ data }: EditorProps<IDialogueItem, IDialog
 		}));
 	};
 
+	const groupOptions = allGroups.map((g: IStateGroup) => ({
+		label: `${g.name}(${g.displayMemberCount ?? g.memberIds.length})`,
+		value: g.id,
+	}));
+
 	return (
 		<Form
 			form={form}
@@ -43,9 +51,15 @@ const DialogueItemMetaDataEditor = ({ data }: EditorProps<IDialogueItem, IDialog
 			}}
 			initialValues={initialValues}
 		>
-			<Form.Item<IDialogueItem> name="friendId" label="关联好友" rules={[{ required: true }]}>
-				<FriendSelect filterExisting withQuickAdd />
-			</Form.Item>
+			{isGroup ? (
+				<Form.Item<IDialogueItem> name="groupId" label="关联群聊">
+					<Select options={groupOptions} />
+				</Form.Item>
+			) : (
+				<Form.Item<IDialogueItem> name="friendId" label="关联好友" rules={[{ required: true }]}>
+					<FriendSelect filterExisting withQuickAdd />
+				</Form.Item>
+			)}
 			<Form.Item<FormValuesType>
 				name="lastMessage"
 				label="最后一条消息"

@@ -3,6 +3,7 @@ import Contacts from "@/pages/contacts";
 import Conversation from "@/pages/conversation";
 import Discover from "@/pages/discover";
 import Friend from "@/pages/friend";
+import GroupConversation from "@/pages/group-conversation";
 import WechatIndex from "@/pages/index";
 import MomentsIndex from "@/pages/moments";
 import MomentDetail from "@/pages/moments/Detail";
@@ -16,7 +17,7 @@ import Wallet from "@/pages/wallet";
 import Balance from "@/pages/wallet/Balance";
 import { BUILT_IN_TRANSACTION_TYPES_LABELS } from "@/stateV2/transaction";
 import type { TFunction } from "i18next";
-import { type RouteObject, type UIMatch } from "react-router-dom";
+import type { RouteObject, UIMatch } from "react-router-dom";
 
 export interface ICommonRouteHandle {
 	label?: string | ((params: UIMatch["params"], t: TFunction) => string);
@@ -39,6 +40,13 @@ export const routes: RouteObject[] = [
 				element: <Conversation />,
 				handle: {
 					label: "routerLabel.wechat.cHistory",
+				},
+			},
+			{
+				path: "group-conversation/:groupId",
+				element: <GroupConversation />,
+				handle: {
+					label: "routerLabel.wechat.groupCHistory",
 				},
 			},
 			{
@@ -162,7 +170,7 @@ export const routes: RouteObject[] = [
 							label: (p: UIMatch["params"], t: TFunction) =>
 								t(
 									BUILT_IN_TRANSACTION_TYPES_LABELS[
-									p.type as keyof typeof BUILT_IN_TRANSACTION_TYPES_LABELS
+										p.type as keyof typeof BUILT_IN_TRANSACTION_TYPES_LABELS
 									],
 								),
 						},

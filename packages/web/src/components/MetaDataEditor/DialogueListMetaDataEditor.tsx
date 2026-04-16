@@ -1,18 +1,31 @@
 import { type IDialogueItem, dialogueListAtom } from "@/stateV2/dialogueList";
-import { Button, Form, Input, InputNumber, Radio, Switch } from "antd";
+import { type IStateGroup, allGroupsAtom } from "@/stateV2/group";
+import { Button, Form, Input, InputNumber, Radio, Select, Switch } from "antd";
 import dayjs from "dayjs";
-import { useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { nanoid } from "nanoid";
+import { useState } from "react";
 import FriendSelect from "./FriendSelect";
 
-const DialogueListMetaDataEditor = () => {
-	const [form] = Form.useForm<IDialogueItem>();
-	const setDialogueList = useSetAtom(dialogueListAtom);
+type DialogueType = "friend" | "group";
 
-	const onFinish = (values: IDialogueItem) => {
+const DialogueListMetaDataEditor = () => {
+	const [form] = Form.useForm<IDialogueItem & { dialogueType: DialogueType }>();
+	const setDialogueList = useSetAtom(dialogueListAtom);
+	const allGroups = useAtomValue(allGroupsAtom);
+	const [dialogueType, setDialogueType] = useState<DialogueType>("friend");
+
+	const onFinish = (values: IDialogueItem & { dialogueType: DialogueType }) => {
+		const { dialogueType: type, ...dialogueValues } = values;
+		// 根据实际类型清除不需要的字段
+		if (type === "group") {
+			dialogueValues.friendId = undefined;
+		} else {
+			dialogueValues.groupId = undefined;
+		}
 		setDialogueList((prev) => [
 			{
-				...values,
+				...dialogueValues,
 				id: nanoid(5),
 			},
 			...prev,
@@ -20,11 +33,39 @@ const DialogueListMetaDataEditor = () => {
 		form.resetFields();
 	};
 
+	const groupOptions = allGroups.map((g: IStateGroup) => ({
+		label: `${g.name}(${g.displayMemberCount ?? g.memberIds.length})`,
+		value: g.id,
+	}));
+
 	return (
-		<Form form={form} layout="vertical" onFinish={onFinish} autoComplete="off">
-			<Form.Item<IDialogueItem> name="friendId" label="关联好友" rules={[{ required: true }]}>
-				<FriendSelect filterExisting withQuickAdd />
+		<Form
+			form={form}
+			layout="vertical"
+			onFinish={onFinish}
+			autoComplete="off"
+			initialValues={{ dialogueType: "friend" }}
+		>
+			<Form.Item name="dialogueType" label="对话类型">
+				<Radio.Group
+					onChange={(e) => {
+						setDialogueType(e.target.value);
+						form.setFieldsValue({ friendId: undefined, groupId: undefined });
+					}}
+				>
+					<Radio value="friend">单聊</Radio>
+					<Radio value="group">群聊</Radio>
+				</Radio.Group>
 			</Form.Item>
+			{dialogueType === "friend" ? (
+				<Form.Item<IDialogueItem> name="friendId" label="关联好友" rules={[{ required: true }]}>
+					<FriendSelect filterExisting withQuickAdd />
+				</Form.Item>
+			) : (
+				<Form.Item<IDialogueItem> name="groupId" label="关联群聊" rules={[{ required: true }]}>
+					<Select options={groupOptions} placeholder="选择群聊" />
+				</Form.Item>
+			)}
 			<Form.Item<IDialogueItem>
 				name="lastMessage"
 				label="最后一条消息"

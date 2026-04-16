@@ -11,6 +11,8 @@ import type { TConversationRole } from "./typing";
 
 export type TStateConversationInputterConfig = {
 	sendRole: TConversationRole;
+	/** 群聊中指定发送者的 profile ID */
+	senderId?: string;
 };
 
 export const inputterConfigAtom = atom<TStateConversationInputterConfig>({
