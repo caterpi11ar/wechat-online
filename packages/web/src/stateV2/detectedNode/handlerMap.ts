@@ -2,6 +2,7 @@ import { MYSELF_ID } from "@/faker/user";
 import { type EBottomNavBars, bottomNavbarsAtom } from "@/stateV2/bottomNavbars";
 import { conversationListAtom, inputterConfigAtom } from "@/stateV2/conversation";
 import { dialogueListAtom } from "@/stateV2/dialogueList";
+import { allGroupsAtom } from "@/stateV2/group";
 import { feedListAtom } from "@/stateV2/moments";
 import { multipleDeviceLoginAtom } from "@/stateV2/multipleDeviceLogin";
 import {
@@ -59,6 +60,7 @@ const handlerMap: HandlerMap = {
 	[EMetaDataType.ContactsContainer]: (get) => get(allProfilesIdsAtom),
 	[EMetaDataType.FriendsTotalCount]: (get) => get(friendsTotalCountDisplayConfigAtom),
 	[EMetaDataType.MultipleDeviceLogin]: (get) => get(multipleDeviceLoginAtom),
+	[EMetaDataType.GroupProfile]: (get, index) => get(allGroupsAtom).find((v) => v.id === index),
 };
 
 export default handlerMap;

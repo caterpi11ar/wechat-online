@@ -20,7 +20,7 @@ import { useConversationAPI } from "../context";
 import ConversationItem from "./ConversationItem";
 
 const ConversationList = () => {
-	const { listRef, conversationId, sendTransfer, sendRedPacketAcceptedReply } =
+	const { listRef, conversationId, isGroupChat, sendTransfer, sendRedPacketAcceptedReply } =
 		useConversationAPI();
 	const [conversationList, setConversationList] = useAtom(conversationListAtom(conversationId));
 	const { isEdit } = useMode();
@@ -154,11 +154,15 @@ const ConversationList = () => {
 									operations,
 									label: "单个消息",
 								},
-								{
-									type: EMetaDataType.FirendProfile,
-									index: conversationId,
-									label: "好友个人信息",
-								},
+								...(isGroupChat
+									? []
+									: [
+											{
+												type: EMetaDataType.FirendProfile as const,
+												index: conversationId,
+												label: "好友个人信息",
+											},
+										]),
 								{
 									type: EMetaDataType.MyProfile,
 									label: "个人信息",

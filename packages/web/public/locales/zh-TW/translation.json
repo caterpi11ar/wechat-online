@@ -82,7 +82,8 @@
 			"momentDetail": "單條朋友圈詳情",
 			"user": "用戶",
 			"transaction": "賬單詳情",
-			"contacts": "通訊錄"
+			"contacts": "通訊錄",
+			"groupCHistory": "群聊記錄"
 		}
 	},
 	"wechatPage": {

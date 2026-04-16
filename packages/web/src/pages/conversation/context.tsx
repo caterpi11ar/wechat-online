@@ -4,6 +4,7 @@ import {
 	type IConversationTypeRedPacket,
 	type IConversationTypeTransfer,
 	type TConversationItem,
+	type TConversationRole,
 	fromLastGenerateUpperText,
 	getInputterConfigValueSnapshot,
 	getInputterValueSnapshot,
@@ -44,7 +45,8 @@ import { type ReactEditor, withReact } from "slate-react";
 type InputMode = HTMLAttributes<HTMLDivElement>["inputMode"];
 
 interface IConversationAPIContext {
-	conversationId: IStateProfile["id"];
+	conversationId: string;
+	isGroupChat: boolean;
 	listRef: RefObject<HTMLDivElement>;
 	scrollConversationListToBtm: () => void;
 	inputEditor: BaseEditor & ReactEditor;
@@ -67,7 +69,9 @@ const ConversationAPIContext = createContext<IConversationAPIContext | null>(nul
 export const ConversationAPIProvider = ({ children }: PropsWithChildren) => {
 	const listRef = useRef<HTMLDivElement>(null);
 	const inputEditor = useCreation(() => withInlines(withHistory(withReact(createEditor()))), []);
-	const { id: conversationId = "" } = useParams();
+	const params = useParams<{ id?: string; groupId?: string }>();
+	const isGroupChat = !!params.groupId;
+	const conversationId = params.groupId ?? params.id ?? "";
 	const setRecentUsedEmoji = useSetAtom(recentUsedEmojiAtom);
 	const [mobileInputMode, setMobileInputMode] = useState<InputMode>("text");
 	const previousMobileInputMode = usePrevious(mobileInputMode);
@@ -86,20 +90,30 @@ export const ConversationAPIProvider = ({ children }: PropsWithChildren) => {
 		Transforms.move(inputEditor, { distance: 1 });
 	}, []);
 
+	/** 群聊时返回 { senderId, role }，单聊时返回空对象 */
+	const getGroupSenderFields = useCallback(() => {
+		if (!isGroupChat) return {};
+		const { senderId } = getInputterConfigValueSnapshot();
+		const id = senderId ?? MYSELF_ID;
+		return { senderId: id, role: (id === MYSELF_ID ? "mine" : "friend") as TConversationRole };
+	}, [isGroupChat]);
+
 	const sendTextMessage = useCallback(() => {
-		const { sendRole } = getInputterConfigValueSnapshot();
+		const { sendRole, senderId } = getInputterConfigValueSnapshot();
 		const value = getInputterValueSnapshot();
 		if (isEqual(value, SLATE_INITIAL_VALUE)) return;
+		const role = isGroupChat ? (senderId && senderId !== MYSELF_ID ? "friend" : "mine") : sendRole;
 		setConversationListValue(conversationId, (prev) => {
 			return [
 				...prev,
 				{
 					type: EConversationType.text,
-					role: sendRole,
+					role,
 					textContent: value,
 					id: nanoid(8),
 					sendTimestamp: dayjs().valueOf(),
 					upperText: fromLastGenerateUpperText(prev),
+					...(isGroupChat ? { senderId: senderId ?? MYSELF_ID } : {}),
 				},
 			] as TConversationItem[];
 		});
@@ -119,19 +133,26 @@ export const ConversationAPIProvider = ({ children }: PropsWithChildren) => {
 			},
 		});
 		scrollConversationListToBtm();
-	}, [conversationId]);
+	}, [conversationId, isGroupChat]);
 
 	const sendTickleText = useCallback(
 		throttle(
 			(friendId: IStateProfile["id"]) => {
 				const friendProfile = getProfileValueSnapshot(friendId)!;
 				const myProfile = getMyProfileValueSnapshot()!;
+				const { senderId } = getInputterConfigValueSnapshot();
 				let finalTickleText = "";
-				if (friendId === MYSELF_ID) {
+				if (isGroupChat && senderId && senderId !== MYSELF_ID) {
+					const senderProfile = getProfileValueSnapshot(senderId)!;
+					if (friendId === senderId) {
+						finalTickleText = `"${senderProfile.nickname}" 拍了拍自己${senderProfile.tickleText ?? ""}`;
+					} else {
+						finalTickleText = `"${senderProfile.nickname}" 拍了拍 "${friendProfile.nickname}" ${friendProfile.tickleText ?? ""}`;
+					}
+				} else if (friendId === MYSELF_ID) {
 					finalTickleText = `我拍了拍自己${myProfile.tickleText ?? ""}`;
 				} else {
-					finalTickleText = `我拍了拍 "${friendProfile.nickname}" ${friendProfile.tickleText ?? ""
-						}`;
+					finalTickleText = `我拍了拍 "${friendProfile.nickname}" ${friendProfile.tickleText ?? ""}`;
 				}
 				setConversationListValue(conversationId, (prev) => {
 					return [
@@ -153,7 +174,7 @@ export const ConversationAPIProvider = ({ children }: PropsWithChildren) => {
 			1000,
 			{ trailing: false },
 		),
-		[conversationId],
+		[conversationId, isGroupChat],
 	);
 
 	const sendTransfer = useCallback(
@@ -167,11 +188,12 @@ export const ConversationAPIProvider = ({ children }: PropsWithChildren) => {
 						sendTimestamp: dayjs().valueOf(),
 						upperText: fromLastGenerateUpperText(prev),
 						...data,
+						...getGroupSenderFields(),
 					},
 				] as TConversationItem[];
 			});
 		},
-		[conversationId],
+		[conversationId, getGroupSenderFields],
 	);
 
 	const sendRedPacketAcceptedReply = useCallback(
@@ -185,11 +207,12 @@ export const ConversationAPIProvider = ({ children }: PropsWithChildren) => {
 						sendTimestamp: dayjs().valueOf(),
 						upperText: fromLastGenerateUpperText(prev),
 						redPacketId,
+						...getGroupSenderFields(),
 					},
 				] as TConversationItem[];
 			});
 		},
-		[conversationId],
+		[conversationId, getGroupSenderFields],
 	);
 
 	const removeLastNode = useCallback(async () => {
@@ -203,6 +226,7 @@ export const ConversationAPIProvider = ({ children }: PropsWithChildren) => {
 	const value: IConversationAPIContext = useMemo(() => {
 		return {
 			conversationId,
+			isGroupChat,
 			listRef,
 			scrollConversationListToBtm,
 			inputEditor,
@@ -217,7 +241,7 @@ export const ConversationAPIProvider = ({ children }: PropsWithChildren) => {
 			setMobileInputMode,
 			previousMobileInputMode,
 		};
-	}, [mobileInputMode]);
+	}, [mobileInputMode, isGroupChat]);
 
 	return (
 		<ConversationAPIContext.Provider value={value}>{children}</ConversationAPIContext.Provider>

@@ -5,14 +5,22 @@ import { focusAtom } from "jotai-optics";
 import { atomFamily } from "jotai/utils";
 import type { OpticFor_ } from "optics-ts";
 import atomWithStorage from "./atomWithStorage";
+import { GROUP_ID_PREFIX } from "./group";
 import type { IStateProfile } from "./profile";
 import { mainStore } from "./store";
 import { getUnreadCountValueSnapshot, unreadCountAtom } from "./unreadCount";
 
+/**
+ * 对话列表项。friendId 和 groupId 二选一：
+ * - 单聊：设置 friendId
+ * - 群聊：设置 groupId
+ */
 export interface IDialogueItem {
 	id: string;
-	/** 对话关联的好友 id */
-	friendId: IStateProfile["id"];
+	/** 对话关联的好友 id（单聊） */
+	friendId?: IStateProfile["id"];
+	/** 对话关联的群聊 id（群聊） */
+	groupId?: string;
 	/** 最后一条消息，将显示在对话列表中 */
 	lastMessage: string;
 	/** 最后一条消息时间 */
@@ -31,13 +39,15 @@ export interface IDialogueItem {
 
 export type TStateDialogueList = IDialogueItem[];
 
+export const isGroupDialogue = (item: IDialogueItem): boolean => !!item.groupId;
+
 export const dialogueListAtom = atomWithStorage<TStateDialogueList>("dialogueList", [
 	{
 		id: "1",
 		friendId: "1",
 		lastMessage: "[图片]",
 		lastMessageTime: "12:57",
-		isPinned: true
+		isPinned: true,
 	},
 	{
 		id: "2",
@@ -46,6 +56,12 @@ export const dialogueListAtom = atomWithStorage<TStateDialogueList>("dialogueLis
 		lastMessageTime: "星期四",
 		isMuted: true,
 		unreadMarkNumber: 12,
+	},
+	{
+		id: "3",
+		groupId: `${GROUP_ID_PREFIX}demo1`,
+		lastMessage: "收到，我准备一下材料",
+		lastMessageTime: "14:32",
 	},
 ]);
 

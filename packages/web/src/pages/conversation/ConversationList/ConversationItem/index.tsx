@@ -17,8 +17,8 @@ type Props = {
 
 const ConversationItem = ({ data }: Props) => {
 	const { type, role, upperText, id: conversationItemId } = data;
-	const { id } = useParams<{ id: string }>();
-	const senderId = role === "friend" ? id! : MYSELF_ID;
+	const { id } = useParams<{ id?: string }>();
+	const senderId = data.senderId ?? (role === "friend" ? (id ?? "") : MYSELF_ID);
 
 	switch (type) {
 		case EConversationType.text:
